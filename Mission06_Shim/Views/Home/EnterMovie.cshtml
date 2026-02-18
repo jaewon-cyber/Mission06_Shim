@@ -1,18 +1,83 @@
-@model TModel
+@model Mission06_Shim.Models.Movie
 
 @{
-    Layout = null;
+    // Change the title dynamically based on whether it's a new entry or an edit
+    ViewData["Title"] = Model.MovieId == 0 ? "Enter Movie" : "Edit Movie";
 }
 
-<!DOCTYPE html>
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" asp-action="@(Model.MovieId == 0 ? "EnterMovie" : "Edit")">
+                
+                <input type="hidden" asp-for="MovieId" />
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Category" class="control-label">Category</label>
+                    <input asp-for="Category" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Title" class="control-label">Title</label>
+                    <input asp-for="Title" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Year" class="control-label">Year</label>
+                    <input asp-for="Year" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Director" class="control-label">Director</label>
+                    <input asp-for="Director" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Rating" class="control-label">Rating</label>
+                    <select asp-for="Rating" class="form-control">
+                        <option value="">Select a Rating</option>
+                        <option value="G">G</option>
+                        <option value="PG">PG</option>
+                        <option value="PG-13">PG-13</option>
+                        <option value="R">R</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Edited" class="control-label">Edited?</label>
+                    <select asp-for="Edited" class="form-control">
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="LentTo" class="control-label">Lent To (Optional)</label>
+                    <input asp-for="LentTo" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="CopiedToPlex" class="control-label">Copied To Plex?</label>
+                    <select asp-for="CopiedToPlex" class="form-control">
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Notes" class="control-label">Notes (Optional, Max 25 chars)</label>
+                    <input asp-for="Notes" class="form-control" maxlength="25" />
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Save Movie</button>
+                    <a asp-action="MovieList" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-</body>
-</html>

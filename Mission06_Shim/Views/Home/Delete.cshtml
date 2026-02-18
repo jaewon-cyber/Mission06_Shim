@@ -1,0 +1,20 @@
+@model Mission06_Shim.Models.Movie
+
+@{
+    ViewData["Title"] = "Delete Movie";
+}
+
+<div class="container text-center mt-5">
+    <h2>Confirm Deletion</h2>
+    
+    <div class="alert alert-danger" role="alert">
+        Are you sure you want to delete the movie <strong>@Model.Title</strong>?
+    </div>
+
+    <form method="post" asp-action="Delete">
+        <input type="hidden" asp-for="MovieId" />
+        
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="MovieList" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

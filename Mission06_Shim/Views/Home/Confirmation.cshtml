@@ -1,18 +1,13 @@
-@model TModel
-
+@model Mission06_Shim.Models.Movie
 @{
-    Layout = null;
+    ViewData["Title"] = "Movie Added";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+<div class="text-center mt-5">
+    <h1 class="display-4 text-success">Success!</h1>
+    <p class="lead">The movie <strong>@Model.Title</strong> has been added to the collection.</p>
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-primary">Return Home</a>
+        <a asp-action="EnterMovie" class="btn btn-outline-secondary">Add Another Movie</a>
+    </div>
 </div>
-</body>
-</html>
