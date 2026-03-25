@@ -1,0 +1,9 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm 

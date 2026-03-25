@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = "Confirmation";
+}
+
+<div class="text-center">
+    <h1 class="display-6">Movie Added</h1>
+    <p class="lead">
+        Thanks! <strong>@(ViewData["MovieTitle"] ?? "Your movie")</strong> has been added to the collection.
+    </p>
+    <a class="btn btn-outline-primary" asp-controller="Home" asp-action="EnterMovie">Add another</a>
+</div>
