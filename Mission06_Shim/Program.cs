@@ -1,13 +1,24 @@
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+var dbPath = Path.Combine(builder.Environment.ContentRootPath, "Movies.sqlite");
+var connectionString = $"Data Source={dbPath}";
+
 builder.Services.AddDbContext<Mission06_Shim.Models.MovieContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("MovieConnection")));
+    options.UseSqlite(connectionString));
 
 var app = builder.Build();
+
+// Ensure the SQLite database exists and is up to date.
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<Mission06_Shim.Models.MovieContext>();
+    db.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
