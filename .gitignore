@@ -3,6 +3,3 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
-*.sqlite-journal
-*.sqlite-wal
-*.sqlite-shm
